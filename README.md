@@ -1,4 +1,4 @@
-## [ICLR2026] _i-LN_: Analyzing the Training Dynamics of Image Restoration Transformers: A Revisit to Layer Normalization
+## [ICLR 2026] _i-LN_: Analyzing the Training Dynamics of Image Restoration Transformers: A Revisit to Layer Normalization
 
 [Arxiv](https://arxiv.org/abs/2504.06629) | [OpenReview](https://openreview.net/forum?id=SbLj5hJXh6)
 
