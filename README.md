@@ -32,12 +32,13 @@ Sungkyunkwan University \
   <em><b>Figure 1.</b> Visualization of feature magnitudes and channel entropy during training of an Image Restoration (IR) Transformer.</em>
 </p>
 
-## Repository Layout
 
-- [`iLN/`](iLN): full project code, configs, scripts, and assets
-- [`iLN/README.md`](iLN/README.md): project-local README
 
-All commands below assume you are inside `iLN/`.
+## Status
+
+- :white_check_mark: Code release
+- :white_check_mark: Model checkpoint release
+
 
 ## Environment Setup
 
@@ -45,11 +46,19 @@ All commands below assume you are inside `iLN/`.
 cd iLN
 bash _custom_setup.sh
 ```
+- Checkpoints can be downloaded from [here.](https://drive.google.com/drive/folders/1vAv1qw_jYsk0TIJhegjrJkYG3Rycey8c?usp=sharing)
+- Datasets can be downloaded and preprocessed from [BasicSR.](https://github.com/xpixelgroup/basicsr)
+
+
+---
 
 ## Naming
 
 - `HAT-mini`: referred to as `HAT_1` in the paper; smaller than `HAT-S`
 - `HAT-dagger`: the full-sized HAT model
+
+---
+
 
 ## Train
 
@@ -57,7 +66,7 @@ bash _custom_setup.sh
 
 ```bash
 cd iLN
-python basicsr/train.py -opt options/train/HAT-mini/SRx2_HAT-mini_baseline.yml
+python basicsr/train.py -opt options/train/HAT-mini/SRx2_HAT-mini_baseline.yml  # modify the ckpt/dataset path as required
 python basicsr/train.py -opt options/train/HAT-mini/SRx4_HAT-mini_baseline.yml
 ```
 
@@ -77,13 +86,16 @@ python basicsr/train.py -opt options/train/HAT-dagger/SRx2_HAT-dagger_iLN.yml
 python basicsr/train.py -opt options/train/HAT-dagger/SRx4_HAT-dagger_iLN.yml
 ```
 
+---
+
+
 ## Test
 
 ### HAT-mini baseline
 
 ```bash
 cd iLN
-python basicsr/test.py -opt options/test/HAT-mini/SRx2_HAT-mini_baseline.yml
+python basicsr/test.py -opt options/test/HAT-mini/SRx2_HAT-mini_baseline.yml  # modify the ckpt/dataset path as required
 python basicsr/test.py -opt options/test/HAT-mini/SRx4_HAT-mini_baseline.yml
 ```
 
@@ -103,11 +115,6 @@ python basicsr/test.py -opt options/test/HAT-dagger/SRx2_HAT-dagger_iLN.yml
 python basicsr/test.py -opt options/test/HAT-dagger/SRx4_HAT-dagger_iLN.yml
 ```
 
-## Status
-
-- [x] Code release
-- [ ] Model checkpoint release
-
 ---
 
 ## Acknowledgement
@@ -119,6 +126,17 @@ This project is built based on:
 - [HAT](https://github.com/XPixelGroup/HAT)
 - [DRCT](https://github.com/ming053l/drct)
 
-## Contact
 
+## Contact
 Please contact me via 2minkyulee@gmail.com for any inquiries.
+
+
+## Citation
+```
+@article{lee2025analyzing,
+  title={Analyzing the Training Dynamics of Image Restoration Transformers: A Revisit to Layer Normalization},
+  author={Lee, MinKyu and Hyun, Sangeek and Jun, Woojin and Kim, Hyunjun and Chung, Jiwoo and Heo, Jae-Pil},
+  journal={arXiv preprint arXiv:2504.06629},
+  year={2025}
+}
+```
