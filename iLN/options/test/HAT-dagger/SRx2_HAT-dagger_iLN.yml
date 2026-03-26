@@ -1,0 +1,98 @@
+name: SRx2_HAT-dagger_iLN
+suffix: ~  # add suffix to saved images
+model_type: HATModel
+scale: 2
+num_gpu: 1  # set num_gpu: 0 for cpu mode
+manual_seed: 0
+
+
+
+
+
+
+datasets:
+  val:
+    name: Set5
+    type: PairedImageDataset
+    dataroot_gt: YOUR_PATH/sr_dataset_fp64_mod234/Set5/HRmod2
+    dataroot_lq: YOUR_PATH/sr_dataset_fp64_mod234/Set5/LRfp64x2
+    io_backend:
+      type: disk
+
+  val_2:
+    name: Set14
+    type: PairedImageDataset
+    dataroot_gt: YOUR_PATH/sr_dataset_fp64_mod234/Set14/HRmod2
+    dataroot_lq: YOUR_PATH/sr_dataset_fp64_mod234/Set14/LRfp64x2
+    io_backend:
+      type: disk
+
+  val_3:
+    name: B100
+    type: PairedImageDataset
+    dataroot_gt: YOUR_PATH/sr_dataset_fp64_mod234/B100/HRmod2
+    dataroot_lq: YOUR_PATH/sr_dataset_fp64_mod234/B100/LRfp64x2
+    io_backend:
+      type: disk
+
+  val_4:
+    name: Urban100
+    type: PairedImageDataset
+    dataroot_gt: YOUR_PATH/sr_dataset_fp64_mod234/Urban100/HRmod2
+    dataroot_lq: YOUR_PATH/sr_dataset_fp64_mod234/Urban100/LRfp64x2
+    io_backend:
+      type: disk
+
+  val_5:
+    name: Manga109
+    type: PairedImageDataset
+    dataroot_gt: YOUR_PATH/sr_dataset_fp64_mod234/Manga109/HRmod2
+    dataroot_lq: YOUR_PATH/sr_dataset_fp64_mod234/Manga109/LRfp64x2
+    io_backend:
+      type: disk
+
+
+# network structures
+network_g:
+  type: HAT-iLN
+  upscale: 2
+  in_chans: 3
+  img_size: 64
+  window_size: 16
+  compress_ratio: 3
+  squeeze_factor: 30
+  conv_scale: 0.01
+  overlap_ratio: 0.5
+  img_range: 1.
+  depths: [6, 6, 6, 6, 6, 6]
+  embed_dim: 180
+  num_heads: [6, 6, 6, 6, 6, 6]
+  mlp_ratio: 2
+  upsampler: 'pixelshuffle'
+  resi_connection: '1conv'
+  stdnorm: True
+
+
+
+
+val:
+  save_img: True
+  suffix: ""  # add suffix to saved images, if None, use exp name
+
+  metrics:
+    psnr: # metric name, can be arbitrary
+      type: calculate_psnr
+      crop_border: 2
+      test_y_channel: true
+    ssim:
+      type: calculate_ssim
+      crop_border: 2
+      test_y_channel: true
+
+# path
+path:
+  pretrain_network_g: YOUR_PATH/iLN/_ckpts/HAT-dagger/SRx2_HAT-dagger_iLN.pth
+  param_key_g: 'params_ema'
+  strict_load_g: true
+
+
